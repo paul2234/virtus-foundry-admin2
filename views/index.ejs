@@ -7,12 +7,26 @@
 	<body>
 		<div id="main">
 			<h1>Virtus Foundry</h1>
+			
+			<section>
+				<h2>Purpose</h2>
+				<ol>
+					<li>Add value to others</li>
+					<li>Find perfect pitch</li>
+					<li>BYOB: Be your own boss</li>
+					<li>Get addicted to ambition</li>
+					<li>Wake up early</li>
+				</ol>
+			</section>
+			<section>
+				<h2>Current Project</h2>
 			<% if (error) { %>
 				<p><%= error %></p>
 			<% } else { %>
 				<p>Virtus Finance:</p>
 				<p><span class='metric-count'><%= count %></span> clicks</p>
 			<% }%>
+			</section>
 		</div>
 	</body>
 </html>
