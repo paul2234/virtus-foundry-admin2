@@ -1,14 +1,97 @@
-#main {
+:root {
+	/*light theme*/
+	--background: rgb(255,255,255);
+	--header-color: rgb(10,10,10);
+	--color: rgb(100,100,100);
+	--card: rgb(245,245,245);
+	--muted: rgb(127,127,127);
+}
+
+body {
+	font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+	background: var(--background);
+	color: var(--color);
+}
+
+h1, h2, h3, h4 {
+	/*font-family: "Cormorant Garamond";*/
+	/*font-weight: 800;*/
+	color: var(--header-color);
+}
+
+p, li {
+	font-size: 14px;
+}
+
+section {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.content {
 	max-width: 800px;
 	margin: 0px auto;
 }
 
-.metric-count {
-	font-weight: bold;
-	font-size: 2em;
+
+
+
+/* COMPONENTS */
+/* Metric grid components */
+.metric-grid {
+
+	display: grid;
+	gap: 10px;
+
+	grid-template-columns: repeat(3, 1fr);
+
+	@media screen and (max-width: 800px) {
+		grid-template-columns: repeat(1, 1fr);
+	}
 }
 
-#metric-container {
-	display: flex;
-	gap: 30px;
+.dial-container {
+	width: 100%;
+	aspect-ratio: 1/1;
+	position: relative;
 }
+
+.dial-metric-overlay {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	text-align: center;
+
+}
+
+.dial-chart-wrapper {
+	transform: translateY(-1%);
+}
+
+
+/*Card*/
+
+.card {
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 10px;
+	background: var(--card);
+}
+
+.card h2, .card h3 {
+	margin-top: 0px;
+}
+
+/* COLORING, OTHER STYLINGS */
+.muted {
+	color: var(--muted);
+}
+
+.mono {
+	/*font-family: "Source Code Pro", monospace, "Courier New";*/
+	font-family: monospace, "Courier New";
+}
+
+

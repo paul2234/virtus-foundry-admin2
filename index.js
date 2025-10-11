@@ -1,14 +1,28 @@
 const express = require('express');
 const app = express();
-const { Events } = require('./models/events.js');
+const { salary } = require('./models/kpis.js');
+const cookieParser = require('cookie-parser');
+// const { Events } = require('./models/events.js');
 
 const PORT = 3000;
 
 app.set('view engine','ejs');
 app.use(express.static('public'));
+app.use(cookieParser());
 
 app.get('/', (req,res) => {
-	res.render('index');
+
+	const myIds = ['e9e259fb-f2ab-4329-90ae-907a606c55a8'];
+	let browserId = req?.cookies?.sid;
+
+	if (browserId && myIds.includes(browserId)) {
+		res.status(200).render('index',{salary});
+		return;	
+	} else {
+		res.status(401).render('401');
+		return;
+	}
+	
 })
 
 // app.get('/', async (req,res) => {

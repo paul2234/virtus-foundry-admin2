@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="styles/index.css">
+		<link rel="stylesheet" href="/styles/index.css">
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		
 	</head>
 	<body>
-		<div id="main">
+		<div class='content'>
 			<h1>Virtus Foundry</h1>
 			
-			<section>
+			<section class="card">
 				<h2>Purpose</h2>
 				<ol>
 					<li>Add value to others</li>
@@ -19,21 +24,66 @@
 					<li>Improve everyday</li>
 				</ol>
 			</section>
-			<section>
+			<section class="card">
 				<h2>Projects</h2>
 				<ol>
-					<li>AI Jax</li>
 					<li>AI Consulting</li>
+					<li>AI Jax</li>
 					<li>RLT Jax & St. Aug</li>
 				</ol>
 			</section>
-			<!-- <section>
-				<h2>KPIs</h2>
-				<div id='metric-container'>
-					<p><span class='metric-count'>22</span> emails</p>
-					<p><span class='metric-count'>1</span> days in a row</p>	
+			<section>
+				<h2>Metrics</h2>
+				<div class='metric-grid'>
+					<div class='card'>
+
+						<!-- kpi title -->
+						<h3>Salary</h3>
+
+						<div class='dial-container'>
+
+							<!-- metric overlay -->
+							<div class='dial-metric-overlay mono'>
+								<% const salaryData = salary.datasets[0].data;
+									const actual = salaryData[0];
+									const target = salaryData[1];
+								%>
+								<span><%=actual%><br>/ <%=target%></span>
+							</div>
+							
+							<!-- dial -->
+							<div class='dial-chart-wrapper'>
+								<canvas id='salary-dial-chart'></canvas>
+							</div>
+
+						</div>
+					</div>
 				</div>
-			</section> -->
+			</section>
+			<section>
+				<h2>AI Consulting</h2>
+				<p>My goal is to sell services for deploying AI agents to companies that have a local presence</p>
+			</section>
 		</div>
+		<script>
+			const DIAL_DATA = <%- JSON.stringify(salary) %>
+			
+
+			// Optional: tweak for crispness on HiDPI
+		    const canvas = document.getElementById('salary-dial-chart');
+		    const ctx = canvas.getContext('2d');
+
+		    new Chart(ctx,{
+		    	type:'doughnut',
+		    	data: DIAL_DATA,
+		    	options: {
+		    		cutout: '75%',
+		    		plugins: {
+		    			tooltip: { enabled:false },
+		    		}
+		    	}
+		    });
+
+		</script>
 	</body>
 </html>
